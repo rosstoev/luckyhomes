@@ -14,13 +14,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     /**
+     * @var FloorRepository
+     */
+    private $floorRepo;
+
+    public function __construct(FloorRepository $floorRepo)
+    {
+        $this->floorRepo = $floorRepo;
+    }
+
+    /**
      * @Route("/", name="index")
-     * @param FloorRepository $floorRepo
+     * @param ApartmentRepository $apartmentRepo
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(FloorRepository $floorRepo, ApartmentRepository $apartmentRepo)
+    public function index(ApartmentRepository $apartmentRepo)
     {
-        $floors = $floorRepo->getAll();
+        $floors = $this->floorRepo->getAll();
         $apartments = $apartmentRepo->getAll();
 
         return $this->render('pages/home.html.twig', [
@@ -30,20 +40,22 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/floor/all", name="floor_all")
-     */
-    public function allFloors(){
-
-    }
-
-    /**
      * @Route("/floor/{floor}", name="floor")
      * @param Floor $floor
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function floor(Floor $floor)
     {
-        dump($floor);
-        exit;
+        $floors = $this->floorRepo->getAll();
+
+        $floorApartments = $floor->getApartments();
+
+
+        return $this->render('pages/floor.html.twig', [
+            'floor' => $floor,
+            'floors' => $floors,
+            'floorApartments' => $floorApartments
+        ]);
     }
 
     /**

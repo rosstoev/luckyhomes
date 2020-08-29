@@ -32,6 +32,9 @@ a{
     text-transform: uppercase;
     transition:0.8s;
 }
+#nav-stick-top{
+    background-color: #3f4448;
+}
 .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active{
     color: white;
     border-bottom: 2px solid #e42126;

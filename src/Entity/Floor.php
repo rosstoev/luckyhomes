@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +30,17 @@ class Floor
      */
     private $name;
 
+    /**
+     * @var ArrayCollection|Apartment[]
+     * @ORM\OneToMany(targetEntity="App\Entity\Apartment", mappedBy="floor")
+     */
+    private $apartments;
+
+    public function __construct()
+    {
+        $this->apartments = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,6 +54,25 @@ class Floor
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Apartment[]
+     */
+    public function getApartments(): ?Collection
+    {
+        return $this->apartments;
+    }
+
+    /**
+     * @param Apartment $apartments
+     * @return Floor
+     */
+    public function setApartments(?Apartment $apartments): self
+    {
+        $this->apartments = $apartments;
 
         return $this;
     }

@@ -19,7 +19,15 @@
 <body>
 {% block header %}
     <header>
-        <nav class="my-nav-style navbar navbar-expand-lg navbar-light fixed-top">
+
+        <nav
+                {% if app.request.attributes.get('_route') == 'index' %}
+                    class="my-nav-style navigation-home-page navbar navbar-expand-lg navbar-light fixed-top"
+                {% else %}
+                    id="nav-stick-top"
+                    class="my-nav-style navbar navbar-expand-lg navbar-light sticky-top"
+                {% endif %}
+        >
             <div class="container">
                 <a class="navbar-brand" href={{ path('index') }}>
                     <img src="{{ asset('assets/img/lucky-logo.png') }}" class="my-logo-style d-inline-block align-top"
@@ -35,7 +43,7 @@
                             <a class="nav-link" href="{{ path('index') }}">Начало</a>
                         </li>
                         <li id='floor' class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{ path('floor_all') }}"
+                            <a class="nav-link dropdown-toggle"
                                id="navbarDropdownMenuLink"
                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Етажи
@@ -85,7 +93,7 @@
                     <h3>Етажи</h3>
                     <ul>
                         {% for floor in floors %}
-                            <a class="dropdown-item" href="{{ path('floor', {'floor' : floor.id}) }}">
+                            <a class="floor-orders" href="{{ path('floor', {'floor' : floor.id}) }}">
                                 {{ floor.name }}
                             </a>
                         {% endfor %}

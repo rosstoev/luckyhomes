@@ -5,7 +5,7 @@ $(document).ready(function () {
     let shopCounter = $('#counter2');
     let floorCounter = $('#counter4');
     let garageCounter = $('#counter3');
-    let navigation = $('.my-nav-style');
+    let navigation = $('.navigation-home-page');
     let url = $(location).attr('pathname');
     $('a[data-rel^=lightcase]').lightcase({
         maxWidth: 1920,
@@ -42,41 +42,19 @@ $(document).ready(function () {
              }, 20);
          }
      }
-     console.log($(window).width());
-    function navStyle() {
-        if(url.length > urlLengthNav){
-
-            $('.my-nav-style').css({
-
-                'background-color': '#3f4448'
-            });
-            $('nav').addClass('sticky-top');
-            $('nav').removeClass('fixed-top');
-        }else {
-            $('nav').addClass('fixed-top');
-            if($(window).width()< 500){
-                navigation.css({
-                    'background-color': '#3f4448',
-                    'padding': '5px 20px'
-                })
-            }else{
-                $(window).scroll(function () {
-                    if($(this).scrollTop() >20){
-                        navigation.css({
-                            'background-color': '#3f4448',
-                            'padding': '20px'
-                        })
-                    }else{
-                        navigation.css({
-                            'background-color': 'transparent',
-                            'padding': '40px'
-                        })
-                    }
-                });
-            }
-
+    $(window).scroll(function () {
+        if($(this).scrollTop() >20){
+            navigation.css({
+                'background-color': '#3f4448',
+                'padding': '20px'
+            })
+        }else{
+            navigation.css({
+                'background-color': 'transparent',
+                'padding': '40px'
+            })
         }
-    }
+    });
 
     if($(window).scrollTop() >= 545.4545288085938){
         counter(32,apartCounter);
@@ -99,7 +77,6 @@ $(document).ready(function () {
      
 
     activeLink(url);
-     navStyle();
       //-------table-------//
       $('#download-pdf').html('Свали ');
     let table = $('#apartment-table').DataTable( {
