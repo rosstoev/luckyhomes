@@ -1,12 +1,125 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="bg">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href={{ asset('assets/img/luckyfavicon.ico') }} type="image/x-icon">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href={{ asset('assets/css/bootstrap.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/main.css') }}>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href={{ asset('assets/css/lightcase.css') }}>
+    <title>Сграда Севлиево</title>
+</head>
+<body>
+{% block header %}
+    <header>
+        <nav class="my-nav-style navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href={{ path('index') }}>
+                    <img src="{{ asset('assets/img/lucky-logo.png') }}" class="my-logo-style d-inline-block align-top"
+                         alt="brand-logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li id="home" class="nav-item">
+                            <a class="nav-link" href="{{ path('index') }}">Начало</a>
+                        </li>
+                        <li id='floor' class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ path('floor_all') }}"
+                               id="navbarDropdownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Етажи
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                {% for floor in floors %}
+                                    <a class="dropdown-item" href="{{ path('floor', {'floor' : floor.id}) }}">
+                                        {{ floor.name }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                        <li id="about_us" class="nav-item">
+                            <a class="nav-link" href="{{ path('about') }}">За нас</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+<main>
+    {% block body %}
+    {% endblock %}
+</main>
+{% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-3 col-sm-12 footer-layout">
+                    <div class="footer-contacts">
+                        <h3>Контакти</h3>
+                        <ul>
+                            <li><span class="fa fa-phone"></span>+359 897 952 523</li>
+                            <li><span class="fa fa-phone"></span>+359 884 040 488</li>
+                            <li><span class="fa fa-envelope"></span>luxinvest@abv.bg</li>
+                            <li id="social-links"><a href="https://www.facebook.com/groups/784117025109526/"
+                                                     target="_blank"><span class="fab fa-facebook"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 footer-layout">
+                    <h3>Адрес:</h3>
+                    <p>Габрово, ул. "Станционна" 14</p>
+                </div>
+                <div class="col-lg-5  col-sm-12 footer-layout">
+                    <h3>Етажи</h3>
+                    <ul>
+                        {% for floor in floors %}
+                            <a class="dropdown-item" href="{{ path('floor', {'floor' : floor.id}) }}">
+                                {{ floor.name }}
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-rights"><span class="fa fa-copyright"></span>Лъки Строй ALL RIGHTS RESERVED</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src={{ asset('assets/js/bootstrap.js') }}></script>
+    <script type="text/javascript" src={{ asset('assets/js/lightcase.js') }}></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script src={{ asset('assets/js/main.js') }}></script>
+{% endblock %}
+</body>
 </html>

@@ -19,28 +19,28 @@ class Floor
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $floorId;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="floor_name", type="string", length=255, nullable=false)
      */
-    private $floorName;
+    private $name;
 
-    public function getFloorId(): ?int
+    public function getId(): ?int
     {
-        return $this->floorId;
+        return $this->id;
     }
 
-    public function getFloorName(): ?string
+    public function getName(): ?string
     {
-        return $this->floorName;
+        return $this->name;
     }
 
-    public function setFloorName(string $floorName): self
+    public function setName(string $name): self
     {
-        $this->floorName = $floorName;
+        $this->name = $name;
 
         return $this;
     }

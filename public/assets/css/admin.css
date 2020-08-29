@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@font-face {
+    font-family: lightcase;
+    src: url("../fonts/lightcase.ttf");
+}
+html,body{
+    font-family: 'Montserrat', sans-serif;
+    color: #3f4448;
+}
+nav{
+    margin-bottom: 50px;
+}
+.my-logo-style{
+    width: 70px;
+}
+.my-table-style{
+    margin-bottom: 50px;
+}
+form{
+    margin-bottom: 100px;
+}
+.apartments-gallery{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+
+}
+ul.thumbnails.image_picker_selector li{
+    width: 30%;
+}
+.thumbnail {
+   width: 100%;
+}
+.image_picker_image{
+    width: 100%;
+    height: auto;
+}
+#login-form{
+    padding: 50% 0;
+}
+#userLog{
+    display: inline;
+}
+#alert-msg{
+    margin-top: 20px;
+}
+#userLog span {
+    color: white;
+    padding-right: 10px;
+
+}
+#userLog a{
+    color: rgba(255, 255, 255, 0.5);;
+}
+#userLog a:hover{
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+#loader{
+    display: none;
+    background: url("../img/732.gif") center center no-repeat;
+    width: 64px;
+    height: 64px;
+    padding-left: 164px;
+}
+#edit-submit{
+    margin-top: 26px;
+
+}
+/**------responsive---------**/
+@media screen and (max-width: 768px) {
+    ul.thumbnails.image_picker_selector li{
+        width: 60%;
+    }
+    .thumbnail {
+        width: 100%;
+    }
+}
+

@@ -47,4 +47,11 @@ class FloorRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getAll(){
+
+        $floors = $this->findAll();
+
+        return $floors;
+    }
 }

@@ -47,4 +47,9 @@ class ApartmentRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getAll(){
+        $all = $this->findAll();
+        return $all;
+    }
 }

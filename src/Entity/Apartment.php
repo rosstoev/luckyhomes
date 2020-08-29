@@ -19,14 +19,14 @@ class Apartment
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $apartmentId;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="apartment_name", type="string", length=255, nullable=false)
      */
-    private $apartmentName;
+    private $name;
 
     /**
      * @var float|null
@@ -75,7 +75,7 @@ class Apartment
      *
      * @ORM\Column(name="apartment_status", type="string", length=255, nullable=true)
      */
-    private $apartmentStatus;
+    private $status;
 
     /**
      * @var string|null
@@ -94,19 +94,19 @@ class Apartment
      */
     private $floor;
 
-    public function getApartmentId(): ?int
+    public function getId(): ?int
     {
-        return $this->apartmentId;
+        return $this->id;
     }
 
-    public function getApartmentName(): ?string
+    public function getName(): ?string
     {
-        return $this->apartmentName;
+        return $this->name;
     }
 
-    public function setApartmentName(string $apartmentName): self
+    public function setName(string $name): self
     {
-        $this->apartmentName = $apartmentName;
+        $this->name = $name;
 
         return $this;
     }
@@ -183,14 +183,14 @@ class Apartment
         return $this;
     }
 
-    public function getApartmentStatus(): ?string
+    public function getStatus(): ?string
     {
-        return $this->apartmentStatus;
+        return $this->status;
     }
 
-    public function setApartmentStatus(?string $apartmentStatus): self
+    public function setStatus(?string $status): self
     {
-        $this->apartmentStatus = $apartmentStatus;
+        $this->status = $status;
 
         return $this;
     }
