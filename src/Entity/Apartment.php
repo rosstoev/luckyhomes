@@ -94,6 +94,11 @@ class Apartment
      */
     private $floor;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkImage;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -215,6 +220,18 @@ class Apartment
     public function setFloor(?Floor $floor): self
     {
         $this->floor = $floor;
+
+        return $this;
+    }
+
+    public function getLinkImage(): ?string
+    {
+        return $this->linkImage;
+    }
+
+    public function setLinkImage(?string $linkImage): self
+    {
+        $this->linkImage = $linkImage;
 
         return $this;
     }

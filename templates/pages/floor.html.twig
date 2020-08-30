@@ -13,7 +13,13 @@
                 {% for floorApartment in floorApartments %}
                     <div class="col-md-4 col-sm-12">
                         <div class="apartment-layout">
-                            <div style="background: url('{{ asset('assets/img/apartamenti/def.jpg') }}') no-repeat center /cover;"
+                            <div style="background:
+                            {% if floorApartment.linkImage is not null %}
+                                    url('{{ asset('assets/img/apartamenti/'~ floorApartment.id~'/'~ floorApartment.linkImage) }}')
+                            {% else %}
+                                    url('{{ asset('assets/img/apartamenti/def.jpg') }}')
+                            {% endif %}
+                                    no-repeat center /cover;"
                                  class="apartment-link">
                                 <div class="apartment-dark-layout"></div>
                             </div>

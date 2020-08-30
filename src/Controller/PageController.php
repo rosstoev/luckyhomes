@@ -8,33 +8,36 @@ use App\Entity\Apartment;
 use App\Entity\Floor;
 use App\Repository\ApartmentRepository;
 use App\Repository\FloorRepository;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
 {
     /**
-     * @var FloorRepository
+     * @var Collection|Floor[]
      */
-    private $floorRepo;
+    private $floors;
 
     public function __construct(FloorRepository $floorRepo)
     {
-        $this->floorRepo = $floorRepo;
+        $this->floors = $floorRepo->getAll();
     }
 
     /**
      * @Route("/", name="index")
      * @param ApartmentRepository $apartmentRepo
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index(ApartmentRepository $apartmentRepo)
     {
-        $floors = $this->floorRepo->getAll();
         $apartments = $apartmentRepo->getAll();
 
         return $this->render('pages/home.html.twig', [
-            'floors' => $floors,
+            'floors' => $this->floors,
             'apartments' => $apartments
         ]);
     }
@@ -42,18 +45,16 @@ class PageController extends AbstractController
     /**
      * @Route("/floor/{floor}", name="floor")
      * @param Floor $floor
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function floor(Floor $floor)
     {
-        $floors = $this->floorRepo->getAll();
-
         $floorApartments = $floor->getApartments();
 
 
         return $this->render('pages/floor.html.twig', [
             'floor' => $floor,
-            'floors' => $floors,
+            'floors' => $this->floors,
             'floorApartments' => $floorApartments
         ]);
     }
@@ -61,11 +62,28 @@ class PageController extends AbstractController
     /**
      * @Route("/apartment/{apartment}", name="apartment")
      * @param Apartment $apartment
+     * @param Finder $finder
+     * @return Response
      */
-    public function apartment(Apartment $apartment)
+    public function apartment(Apartment $apartment, Finder $finder, Filesystem $filesystem)
     {
-        dump($apartment);
-        exit;
+        $checkDir = $filesystem->exists('assets/img/apartamenti/'.$apartment->getId());
+        $images = [];
+        if($checkDir != false){
+            $finder->files()->in('assets/img/apartamenti/'.$apartment->getId());
+            if($finder->hasResults()){
+
+                foreach ($finder as $file){
+                    $images[] = $file->getFilename();
+                }
+            }
+        }
+        return $this->render('pages/apartment.html.twig', [
+
+            'apartment' => $apartment,
+            'images' => $images,
+            'floors' => $this->floors
+        ]);
     }
 
     /**
@@ -73,6 +91,9 @@ class PageController extends AbstractController
      */
     public function about()
     {
+        return $this->render('pages/about.html.twig', [
 
+            'floors'=> $this->floors
+        ]);
     }
 }

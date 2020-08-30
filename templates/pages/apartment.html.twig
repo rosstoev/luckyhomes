@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <img class="big-apartment-image"
+                     src="{{ asset('assets/img/apartamenti/'~ apartment.name|replace({' ':''}))~'.jpg' }}"
+                     alt="floor image">
+            </div>
+            <div class="col-12">
+                <h2 class="apartment-title">{{ apartment.floor.name }}</h2>
+                <h2 class="apartment-title">{{ apartment.name|upper }}</h2>
+            </div>
+            <div class="col-12">
+                <ul>
+                    <li>Застроена площ: {{ apartment.buildingArea }} кв.м</li>
+                    <li>Общи части: {{ apartment.totalParts }} кв.м</li>
+                    <li>Обща площ: {{ apartment.totalArea }} кв.м</li>
+                    <li>Статус: {{ apartment.status }}</li>
+                </ul>
+            </div>
+            <div class="col-12">
+                <h3 class="aprt-price-title">Цена:</h3>
+                <div>Незавършен:
+                    {% if apartment.priceUnfinish %}
+                        {{ apartment.priceUnfinish|number_format(0, '.', ' ') }} лв.
+                    {% endif %}
+                </div>
+                <div>Завършен:
+                    {% if apartment.priceFinish %}
+                        {{ apartment.priceFinish|number_format(0, '.', ' ') }} лв.
+                    {% endif %}
+                </div>
+            </div>
+            <div class="add-info">
+                {% if apartment.additionalInfo is not null %}
+                    <div class="col-12">
+                        <h3>Допълнителна информация:</h3>
+                    </div>
+                    <div class="col-12">
+                        <p>{{ apartment.additionalInfo }}</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="gallery-box">
+                <div class="col-12">
+                    <h3>Снимки:</h3>
+                </div>
+                <div class="col-12">
+                    {% for image in images %}
+                        <a href="{{ asset('assets/img/apartamenti/' ~ apartment.id ~ '/' ~ image) }}"
+                           data-rel="lightcase:myCollection">
+                            <div style="background-image: url('{{ asset('assets/img/apartamenti/' ~ apartment.id ~ '/' ~ image) }}')"
+                                 class="float-md-left apartments-gallery">
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
