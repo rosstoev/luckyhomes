@@ -28,7 +28,7 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="home")
      * @param ApartmentRepository $apartmentRepo
      * @return Response
      */
@@ -63,6 +63,7 @@ class PageController extends AbstractController
      * @Route("/apartment/{apartment}", name="apartment")
      * @param Apartment $apartment
      * @param Finder $finder
+     * @param Filesystem $filesystem
      * @return Response
      */
     public function apartment(Apartment $apartment, Finder $finder, Filesystem $filesystem)
