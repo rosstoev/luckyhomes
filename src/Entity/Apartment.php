@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -99,6 +101,16 @@ class Apartment
      */
     private $linkImage;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="apartment")
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,7 +136,6 @@ class Apartment
     public function setBuildingArea(?float $buildingArea): self
     {
         $this->buildingArea = $buildingArea;
-
         return $this;
     }
 
@@ -232,6 +243,37 @@ class Apartment
     public function setLinkImage(?string $linkImage): self
     {
         $this->linkImage = $linkImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setApartment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getApartment() === $this) {
+                $image->setApartment(null);
+            }
+        }
 
         return $this;
     }
