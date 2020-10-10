@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ApartmentController extends AbstractController
@@ -23,7 +24,7 @@ class ApartmentController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param ApartmentRepository $apartmentRepo
      * @param FileUploader $fileUploader
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function create(Request $request, EntityManagerInterface $entityManager,
                            ApartmentRepository $apartmentRepo, FileUploader $fileUploader)
