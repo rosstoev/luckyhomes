@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Created by PhpStorm.
  * User: Ros
@@ -26,7 +28,7 @@ class FileUploader
     {
 
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $fileName = $originalFilename .'.'. $uploadedFile->guessExtension();
+        $fileName = $originalFilename . '.' . $uploadedFile->guessExtension();
 
         try {
             $uploadedFile->move($this->getTargetDirectory(), $fileName);

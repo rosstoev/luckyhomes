@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -68,13 +68,13 @@ class PageController extends AbstractController
      */
     public function apartment(Apartment $apartment, Finder $finder, Filesystem $filesystem)
     {
-        $checkDir = $filesystem->exists('assets/img/apartamenti/'.$apartment->getId());
+        $checkDir = $filesystem->exists('assets/img/apartamenti/' . $apartment->getId());
         $images = [];
-        if($checkDir != false){
-            $finder->files()->in('assets/img/apartamenti/'.$apartment->getId());
-            if($finder->hasResults()){
+        if ($checkDir != false) {
+            $finder->files()->in('assets/img/apartamenti/' . $apartment->getId());
+            if ($finder->hasResults()) {
 
-                foreach ($finder as $file){
+                foreach ($finder as $file) {
                     $images[] = $file->getFilename();
                 }
             }
@@ -94,7 +94,7 @@ class PageController extends AbstractController
     {
         return $this->render('pages/about.html.twig', [
 
-            'floors'=> $this->floors
+            'floors' => $this->floors
         ]);
     }
 }

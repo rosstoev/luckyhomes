@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
@@ -15,7 +16,8 @@ class PageController extends AbstractController
      * @param ApartmentRepository $apartmentRepo
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function home(ApartmentRepository $apartmentRepo){
+    public function home(ApartmentRepository $apartmentRepo)
+    {
         /** @var Apartment $apartments */
         $apartments = $apartmentRepo->getAll();
 
