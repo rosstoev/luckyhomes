@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?=$changeAlert?>
+        </div>
+        <div class="col-md-12">
+            <h1>{{ apartment.name }} </h1>
+            <h2>{{ apartment.floor.name }}</h2>
+        </div>
+        <div class="col-md-12">
+            <ul>
+                <li>Застроена площ: {{ apartment.buildingArea }} </li>
+                <li>Общи части: {{ apartment.totalParts }} кв.м</li>
+                <li>Обща площ: {{ apartment.totalArea }} кв.м</li>
+                {% if apartment.status %}
+                    <li>Статус: {{ apartment.status }}</li>
+                {% endif %}
+            </ul>
+        </div>
+        {% if apartment.priceUnfinish != null %}
+            <div class="col-md-12">
+                <h3>Цена незавършен:</h3>
+                <div>{{ apartment.priceUnfinish|number_format(0, '.', ' ') }} лв.</div>
+            </div>
+        {% endif %}
+        {% if apartment.priceFinish %}
+            <div class="col-md-12">
+                <h3>Цена завършен:</h3>
+                <div>{{ apartment.priceFinish|number_format(0, '.', ' ')  }} лв.</div>
+            </div>
+        {% endif %}
+        {% if apartment.priceRent %}
+            <div class="col-md-12">
+                <h3>Цена наем:</h3>
+                <div>{{ apartment.priceRent|number_format(0,'.', ' ') }} лв.</div>
+            </div>
+        {% endif %}
+
+        <div>
+            <div class="col-md-12">
+                <h3>Допълнителна информация:</h3>
+            </div>
+            <div class="col-md-12">
+                <p>{{ apartment.additionalInfo }}</p>
+            </div>
+        </div>
+        <div class="gallery-box">
+            <div class="col-md-12">
+                <h3>Снимки:</h3>
+            </div>
+            <div class="col-12">
+                {% for image in apartment.images %}
+                    <a href="{{ asset('assets/img/apartamenti/' ~ image.apartment.id ~ '/' ~ image.name) }}"
+                       data-rel="lightcase:myCollection">
+                        <div style="background-image: url('{{ asset('assets/img/apartamenti/' ~ image.apartment.id ~ '/' ~ image.name) }}')"
+                             class="float-md-left apartments-gallery">
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

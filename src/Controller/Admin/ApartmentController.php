@@ -70,10 +70,14 @@ class ApartmentController extends AbstractController
 
     /**
      * @Route("luxadmin/apartment/{apartment}", name="view_apartment")
+     * @param Apartment $apartment
      */
-    public function view()
+    public function view(Apartment $apartment)
     {
 
+        return $this->render('admin/apartment/view.html.twig', [
+            'apartment' => $apartment
+        ]);
     }
 
     /**
