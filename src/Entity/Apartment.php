@@ -97,15 +97,18 @@ class Apartment
      */
     private $floor;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $linkImage;
+
 
     /**
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="apartment")
      */
     private $images;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class)
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=true)
+     */
+    private $linkImage;
 
     public function __construct()
     {
@@ -236,18 +239,6 @@ class Apartment
         return $this;
     }
 
-    public function getLinkImage(): ?string
-    {
-        return $this->linkImage;
-    }
-
-    public function setLinkImage(?string $linkImage): self
-    {
-        $this->linkImage = $linkImage;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Image[]
      */
@@ -275,6 +266,18 @@ class Apartment
                 $image->setApartment(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLinkImage(): ?Image
+    {
+        return $this->linkImage;
+    }
+
+    public function setLinkImage(?Image $linkImage): self
+    {
+        $this->linkImage = $linkImage;
 
         return $this;
     }

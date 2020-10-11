@@ -8,9 +8,9 @@ $(document).ready(function() {
         maxWidth: 1920,
         maxHeight: 1200
     });
-    $("#img-selector").imagepicker({
+    $("#apartment_deleteImages").imagepicker({
         hide_select : true,
-        show_label  : false
+        show_label  : true
     });
     $('#edit-submit').click(function () {
         $("#loader").fadeIn('fast');

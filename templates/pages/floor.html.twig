@@ -15,7 +15,7 @@
                         <div class="apartment-layout">
                             <div style="background:
                             {% if floorApartment.linkImage is not null %}
-                                    url('{{ asset('assets/img/apartamenti/'~ floorApartment.id~'/'~ floorApartment.linkImage) }}')
+                                    url('{{ asset('assets/img/apartamenti/'~ floorApartment.id~'/'~ floorApartment.linkImage.name) }}')
                             {% else %}
                                     url('{{ asset('assets/img/apartamenti/def.jpg') }}')
                             {% endif %}

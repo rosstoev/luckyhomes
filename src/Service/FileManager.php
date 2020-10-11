@@ -10,14 +10,28 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\Image;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileUploader
+class FileManager
 {
 
+    /**
+     * @var string
+     */
     private $targetDir;
 
+    /**
+     * @var Filesystem
+     */
+    private $fileSystem;
+
+    public function __construct(Filesystem $fileSystem)
+    {
+        $this->fileSystem = $fileSystem;
+    }
 
     public function setTargetDir(string $targetDir)
     {
@@ -45,4 +59,19 @@ class FileUploader
         return $this->targetDir;
     }
 
+
+    public function deleteImage(Image $image)
+    {
+        $fileSystem = $this->fileSystem;
+        $pathToImg = $this->getTargetDirectory() . $image->getName();
+
+        $fileSystem->remove($pathToImg);
+    }
+
+    public function deleteAll()
+    {
+        $fileSystem = $this->fileSystem;
+        $directory = $this->getTargetDirectory();
+        $fileSystem->remove($directory);
+    }
 }

@@ -27,7 +27,7 @@ class Image
     /**
      * @ORM\ManyToOne(targetEntity=Apartment::class, inversedBy="images")
      * @ORM\JoinColumns(
-     *     @ORM\JoinColumn(name="apartment_id", referencedColumnName="apartment_id")
+     *     @ORM\JoinColumn(name="apartment_id", referencedColumnName="apartment_id", onDelete="CASCADE")
      * )
      */
     private $apartment;
