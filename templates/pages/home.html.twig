@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="my-carousel">
+        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-interval="10000">
+                    <div id="img1">
+                        <h1>Сграда Севлиево</h1>
+                    </div>
+                </div>
+                <div class="carousel-item " data-interval="10000">
+                    <div id="img2"></div>
+                </div>
+                <div class="carousel-item " data-interval="10000">
+                    <div id="img3"></div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="building-info">
+            <div class="row">
+                <div class="col-sm-12 col-lg-5">
+                    <div class="h2">Повече за сградата</div>
+                    <p>Ако е дошло време да намерите своя мечтан нов дом, офис, магазин или гараж в град Севлиево,
+                        тогава сте попаднали на правилното място!
+                        Ние с удоволствие ще ви помогнем да направите своя избор, според желанието ви – за наем или за
+                        закупуване.
+                        Нашите нови, красиви апартаменти, офиси, магазини и гаражи, в които със сигурност ще се
+                        „влюбите” още от пръв поглед, се намират на улица „Хубан Кънев“45-47.
+                        Новопостроената кооперация е в непосредствена близост до Дома на културата, на 5 минути от
+                        центъра на града в тих и спокоен район.
+                        Жилищната сграда се състои от 5 жилищни етажа. На партера са разположени магазини и гаражи.
+                        Дворът е просторен и е красиво озеленен.
+                    </p>
+                </div>
+                <div class="col-sm-12 col-lg-7">
+                    <div class="building-info-img"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="counter">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-3 col-sm-12">
+                    <div id="counter1" class="count-number">0</div>
+                    <div class="count-descr">Апартамента</div>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <div id="counter2" class="count-number">0</div>
+                    <div class="count-descr">Магазина</div>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <div id="counter3" class="count-number">0</div>
+                    <div class="count-descr">Етажа</div>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <div id="counter4" class="count-number">0</div>
+                    <div class="count-descr">Гаража</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Таблица</h2>
+            </div>
+            <div class="col-12">
+                <div class="accordion" id="status-accord">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    Незавършен апартамент
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#status-accord">
+                            <div class="card-body">
+                                <dl>
+                                    <dt>За двустаен и тристаен</dt>
+                                    <dd>480 евро на квадратен метър</dd>
+                                    <dd>Степен на завършеност: Шпакловка, замазка, врати</dd>
+                                    <dd>Газ до етажа</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Завършен апартамент
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                             data-parent="#status-accord">
+                            <div class="card-body">
+                                <dl>
+                                    <dt>За двустаен</dt>
+                                    <dd>580 евро на квадратен метър</dd>
+                                    <dd>Степен на завършеност:
+                                    <dd>Ламинат, боя, лампи</dd>
+                                    <dd>кухня, + печка, плот, фурна, абсорбатор</dd>
+                                    <dd>Маса, 4 стола, диван, секция</dd>
+                                    <dd>спалня, 2 нощни шкафчета, скрин, гардероб</dd>
+                                    <dd>баня завършена</dd>
+                                    <dd>Без: климатик, печка, газ, хладилник, телевизор, пералня</dd>
+                                    <dd>Газ до етажа</dd>
+                                </dl>
+                                <dl>
+                                    <dt>За тристаен</dt>
+                                    <dd>580 евро на квадратен метър</dd>
+                                    <dd>Степен на завършеност:
+                                    <dd>Ламинат, боя, лампи;</dd>
+                                    <dd>кухня, + печка, плот, фурна, абсорбатор</dd>
+                                    <dd>Маса, 4 стола, диван, секция</dd>
+                                    <dd>спалня, 2 нощни шкафчета, скрин, гардероб</dd>
+                                    <dd>баня завършена</dd>
+                                    <dd>Без: климатик, печка, газ, хладилник, телевизор, пералня</dd>
+                                    <dd>Газ до етажа</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-table-style table-responsive">
+            <table id="apartment-table" class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Име</th>
+                    <th scope="col">Застроена площ</th>
+                    <th scope="col">Общи части</th>
+                    <th scope="col">Обща площ</th>
+                    <th scope="col">Цена покупка незавършен</th>
+                    <th scope="col">Цена покупка завършен и обзаведен</th>
+                    <th scope="col">Цена наем</th>
+                    <th scope="col">Статус</th>
+                    <th scope="col">Етаж</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for apartment in apartments %}
+                    <tr>
+                        <td class="table-apartname-space">
+                            <a class="table-floor-link" href="{{ path('apartment', {'apartment' : apartment.id}) }}">
+                                {{ apartment.name }}
+                            </a>
+                        </td>
+                        <td>{{ apartment.buildingArea }}</td>
+                        <td>{{ apartment.totalParts }}</td>
+                        <td>{{ apartment.totalParts }}</td>
+                        <td>
+                            {% if apartment.priceUnfinish is not null %}
+                                {{ apartment.priceUnfinish | number_format(0,'.', ' ') }} лв
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if apartment.priceFinish is not null %}
+                                {{ apartment.priceFinish | number_format(0, '.', ' ') }} лв
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if apartment.priceRent %}
+                                {{ apartment.priceRent }}
+                            {% endif %}
+                        </td>
+                        <td>{{ apartment.status }}</td>
+                        <td>
+                            <a class="table-floor-link" href="{{ path('floor', {'floor': apartment.floor.id}) }}">
+                                {{ apartment.floor.name }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-12 download-table">
+                <button id="download-pdf" type="button" class="btn btn-primary"></button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

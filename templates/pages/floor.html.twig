@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="col-12 text-center">
+            <img class="big-floor-image" src="{{ asset('assets/img/etaji/etaj'~floor.id~'.jpg') }}" alt="floor image">
+        </div>
+        <div class="col-12">
+            <h2 class="floor-title"><?=$floor['floor_name']?></h2>
+        </div>
+        <div class="apartments-list">
+            <div class="row">
+
+                {% for floorApartment in floorApartments %}
+                    <div class="col-md-4 col-sm-12">
+                        <div class="apartment-layout">
+                            <div style="background:
+                            {% if floorApartment.linkImage is not null %}
+                                    url('{{ asset('assets/img/apartamenti/'~ floorApartment.id~'/'~ floorApartment.linkImage.name) }}')
+                            {% else %}
+                                    url('{{ asset('assets/img/apartamenti/def.jpg') }}')
+                            {% endif %}
+                                    no-repeat center /cover;"
+                                 class="apartment-link">
+                                <div class="apartment-dark-layout"></div>
+                            </div>
+                            <a href="{{ path('apartment', {'apartment' : floorApartment.id}) }}">{{ floorApartment.name }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
