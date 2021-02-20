@@ -40,10 +40,12 @@
                             <a class="nav-link" href="{{ path('create_apartment') }}">Добави апартамент</a>
                         </li>
                     </ul>
-                    {#<div id="userLog" role="navigation">#}
-                    {#<span><?=$greeting??null?></span>#}
-                    {#<a href="<?=$logOut?>">Излез</a>#}
-                    {#</div>#}
+                    <div id="userLog" role="navigation">
+                        {% if app.user is not null %}
+                            <span>Здравей, {{ app.user.username }}</span>
+                        {% endif %}
+                        <a href="{{ path('app_logout') }}">Излез</a>
+                    </div>
                 </div>
             </div>
         </nav>

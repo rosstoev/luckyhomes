@@ -7,6 +7,7 @@ namespace App\Controller\Admin;
 use App\Entity\Apartment;
 use App\Repository\ApartmentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
@@ -14,7 +15,7 @@ class PageController extends AbstractController
     /**
      * @Route("/luxadmin", name="admin_home")
      * @param ApartmentRepository $apartmentRepo
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function home(ApartmentRepository $apartmentRepo)
     {

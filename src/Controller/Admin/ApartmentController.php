@@ -101,7 +101,7 @@ class ApartmentController extends AbstractController
             $apartmentData = $form->getData();
             $images = $form->get('images')->getData();
             /** @var Image $deleteImages */
-            $deleteImages = $form->get('deleteImages')->getData();
+            $deleteImages = $form->has('deleteImages') ? $form->get('deleteImages')->getData() : null;
 
             $entityManager->beginTransaction();
             try {
