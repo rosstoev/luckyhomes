@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -48,8 +49,15 @@ class ApartmentRepository extends ServiceEntityRepository
     }
     */
 
-    public function getAll(){
+    public function getAll()
+    {
         $all = $this->findAll();
         return $all;
+    }
+
+    public function getLast()
+    {
+        $last = $this->findOneBy([], ['id' => 'DESC']);
+        return $last;
     }
 }

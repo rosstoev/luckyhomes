@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+{% block body %}
+    <div class='container'>
+        <div class='row'>
+            <div class='col-7'>
+                <h5 class='alert alert-danger'>Наистина ли искате да изтриете {{ apartment.name }} ?</h5>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-12'>
+                <a href="{{ path('admin_home') }}" class='btn btn-outline-dark'>НЕ!</a>
+                <a href='{{ path('delete_apartment', {'apartment' : apartment.id,'delete' : '1' }) }}' class='btn btn-outline-danger'>Изтрии!</a>
+            </div>
+        </div>
+{% endblock %}

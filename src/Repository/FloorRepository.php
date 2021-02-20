@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -48,7 +49,8 @@ class FloorRepository extends ServiceEntityRepository
     }
     */
 
-    public function getAll(){
+    public function getAll()
+    {
 
         $floors = $this->findAll();
 

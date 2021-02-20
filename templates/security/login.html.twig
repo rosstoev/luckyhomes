@@ -1,0 +1,46 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <form method="post">
+        <div class="container">
+            {% if error %}
+                <div class="alert alert-danger">Невалидно потребителско име или парола!</div>
+            {% endif %}
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                        <div class="row justify-content-center">
+                            <a class="navbar-brand" href="{{ path('home') }}">
+                                <img src="{{ asset("assets/img/lucky-logo.png") }}" class="my-logo-style" alt="brand-logo">
+                            </a>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="inputUsername">Име:</label>
+                            <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
+                                   class="form-control" required autofocus>
+                            <label for="inputPassword">Парола:</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" required>
+                        </div>
+                        <button class="btn btn-lg btn-primary" type="submit">
+                            Влез
+                        </button>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                </div>
+            </div>
+        </div>
+
+{#        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>#}
+{#        <label for="inputUsername">Username</label>#}
+{#        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required#}
+{#               autofocus>#}
+{#        <label for="inputPassword">Password</label>#}
+{#        <input type="password" name="password" id="inputPassword" class="form-control" required>#}
+
+
+{#        <button class="btn btn-lg btn-primary" type="submit">#}
+{#            Sign in#}
+{#        </button>#}
+    </form>
+{% endblock %}

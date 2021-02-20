@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bg">
+{% block head %}
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport"
@@ -16,12 +17,14 @@
     <link rel="stylesheet" href={{ asset('assets/css/lightcase.css') }}>
     <title>Сграда Севлиево</title>
 </head>
+{% endblock %}
 <body>
+
 {% block header %}
     <header>
 
         <nav
-                {% if app.request.attributes.get('_route') == 'index' %}
+                {% if app.request.attributes.get('_route') == 'home' %}
                     class="my-nav-style navigation-home-page navbar navbar-expand-lg navbar-light fixed-top"
                 {% else %}
                     id="nav-stick-top"
@@ -29,8 +32,8 @@
                 {% endif %}
         >
             <div class="container">
-                <a class="navbar-brand" href={{ path('index') }}>
-                    <img src="{{ asset('assets/img/lucky-logo.png') }}" class="my-logo-style d-inline-block align-top"
+                <a class="navbar-brand" href={{ path('home') }}>
+                    <img src="{{ asset("assets/img/lucky-logo.png") }}" class="my-logo-style d-inline-block align-top"
                          alt="brand-logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -40,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li id="home" class="nav-item">
-                            <a class="nav-link" href="{{ path('index') }}">Начало</a>
+                            <a class="nav-link" href="{{ path('home') }}">Начало</a>
                         </li>
                         <li id='floor' class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle"

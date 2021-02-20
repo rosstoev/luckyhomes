@@ -1,7 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -94,10 +97,23 @@ class Apartment
      */
     private $floor;
 
+
+
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="apartment")
+     */
+    private $images;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class)
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=true)
      */
     private $linkImage;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,7 +140,6 @@ class Apartment
     public function setBuildingArea(?float $buildingArea): self
     {
         $this->buildingArea = $buildingArea;
-
         return $this;
     }
 
@@ -224,12 +239,43 @@ class Apartment
         return $this;
     }
 
-    public function getLinkImage(): ?string
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setApartment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getApartment() === $this) {
+                $image->setApartment(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLinkImage(): ?Image
     {
         return $this->linkImage;
     }
 
-    public function setLinkImage(?string $linkImage): self
+    public function setLinkImage(?Image $linkImage): self
     {
         $this->linkImage = $linkImage;
 
